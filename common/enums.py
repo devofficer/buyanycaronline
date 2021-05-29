@@ -6,6 +6,7 @@ class AdvertisementTypes(Enum):
     HEAVY = 1
     MOTORCYCLE = 2
     BOAT = 3
+    NUMBERPLATE = 4
 
 
 class AdvertisementStatus(Enum):

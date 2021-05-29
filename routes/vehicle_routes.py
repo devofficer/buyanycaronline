@@ -22,6 +22,14 @@ async def create_vehicle(request):
                       condition=vehicle_json["condition"])
     return vehicle, vehicle_json
 
+async def create_accessory(request):
+    body = request.json
+    accessory_json = body["accessory"]
+    payload = await decode_jwt_and_get_payload(request)
+    user = UserDB.get_user_by_id(payload['username'])
+    accessory = Accessory(owner=user.get_username(), title=accessory_json["title"],
+                      price=accessory_json["price"], decription=accessory_json["description"])
+    return accessory, accessory_json
 
 async def init_car(request):
     vehicle, vehicle_json = await create_vehicle(request)
@@ -69,6 +77,15 @@ async def init_motorcycle(request):
     motorcycle.set_adType(AdvertisementTypes.MOTORCYCLE.value)
     return motorcycle
 
+async def init_numberplate(request):
+    accessory, accessory_json = await create_accessory(request)
+    numberplate = NumberPlate(digits=accessory_json["digits"])
+    for k, v in accessory.__dict__.items():
+        if k not in numberplate.__dict__:
+            return json({"Message": "Error: " + str(k) + " is not found"})
+        numberplate.__setattr__(k, v)
+    numberplate.set_adType(AdvertisementTypes.NUMBERPLATE.value)
+    return numberplate
 
 @car_blue_print.post("/vehicle/car/create")
 @Authenticated()
@@ -176,3 +193,29 @@ async def update_motorcycle(request):
             v.strip()
         db_motorcycle.__setattr__(k, v)
     return json({"Message": AdvertisementDB.update_advertisement(db_motorcycle, body["id"])})
+
+@car_blue_print.post("/vehicle/numberplate/create")
+@Authenticated()
+async def create_numberplate(request):
+    numberplate = await init_numberplate(request)
+    return json({"Message": AdvertisementDB.create_advertisement(numberplate)})
+
+
+@car_blue_print.post("/vehicle/numberplate/update")
+@Authenticated()
+async def update_numberplate(request):
+    body = request.json["accessory"]
+    numberplate = await init_numberplate(request)
+    payload = await decode_jwt_and_get_payload(request)
+    db_numberplate = AdvertisementDB.get_advertisement_by_id(body["id"])
+    if db_numberplate.get_owner() != payload["username"]:
+        return json({"Message": "You are not the owner of this ad"})
+    if db_numberplate.get_adType() != AdvertisementTypes.NUMBERPLATE.value:
+        return json({"Message": "Error, is not a numberplate"})
+    for k, v in numberplate.__dict__.items():
+        if "owner" in k or "status" in k or "id" in k:
+            continue
+        if isinstance(v, str):
+            v.strip()
+        db_numberplate.__setattr__(k, v)
+    return json({"Message": AdvertisementDB.update_advertisement(db_numberplate, body["id"])})
