@@ -1,0 +1,622 @@
+{
+	"info": {
+		"_postman_id": "60fbe4a8-d9f1-4ff7-a482-0a9841217ffa",
+		"name": "buyanycaronline",
+		"description": "buyanycaronline backend API calls \nyou need to read them and develop client that can communicate with all calls",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User API",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzOTk1MDAuNDc2MjkxfQ.NciIlt1pDUB2i8onw74kmTMdxymCAGLSeg0U_8ioeVI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"mo@mo.com\",\r\n    \"city\": \"Abu Dhabi\",\r\n    \"country\": \"UAE\",\r\n    \"mobile\": \"0501234567\",\r\n    \"hashed\": \"password\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"create"
+							]
+						},
+						"description": "Only admin can perform this call to create users"
+					},
+					"response": []
+				},
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"mo1@mo.com\",\r\n    \"city\": \"Abu Dhabi\",\r\n    \"country\": \"UAE\",\r\n    \"mobile\": \"0501234567\",\r\n    \"hashed\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"register"
+							]
+						},
+						"description": "Customers registration call"
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"mo1@mo.com\",\r\n    \"hashed\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "Login call for all users type"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzOTk1MDAuNDc2MjkxfQ.NciIlt1pDUB2i8onw74kmTMdxymCAGLSeg0U_8ioeVI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": {\r\n        \"username\":\"mo1@mo.com\",\r\n        \"role\": 0,\r\n        \"city\": \"Duabi\",\r\n        \"country\": \"UAE\",\r\n        \"mobile\": \"0501234567\",\r\n        \"hashed\": \"password\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"update"
+							]
+						},
+						"description": "Only to update contact details and address"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/reset-password-link?username=alme7airbi9357@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"reset-password-link"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "alme7airbi9357@gmail.com"
+								}
+							]
+						},
+						"description": "This call recieves the username of a customer then it sends him tokenized link to reset his password"
+					},
+					"response": []
+				}
+			],
+			"description": "All calls related to \"User\" model and actions that users can perform"
+		},
+		{
+			"name": "Advertisement API",
+			"item": [
+				{
+					"name": "Vehicles",
+					"item": [
+						{
+							"name": "Car advertisement API",
+							"item": [
+								{
+									"name": "Create car",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzOTk1MDAuNDc2MjkxfQ.NciIlt1pDUB2i8onw74kmTMdxymCAGLSeg0U_8ioeVI",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vehicle\":{\r\n    \"title\": \"A test ad 3\",\r\n    \"price\": 10000,\r\n    \"description\":\"This is a test ad\",\r\n    \"make\":1,\r\n    \"model\":25,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\"],\r\n    \"cylinders\":6,\r\n    \"color\":\"FFFF\",\r\n    \"year\":2016,\r\n    \"warranty\":true,\r\n    \"fuel\": 0,\r\n    \"condition\":0,\r\n    \"hp\":300,\r\n    \"body_type\": 0,\r\n    \"transmission\": false,\r\n    \"region\": 0,\r\n    \"num_of_doors\": 0,\r\n    \"distance\":50\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/vehicle/car/create",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"vehicle",
+												"car",
+												"create"
+											]
+										},
+										"description": "Creating car ad type call"
+									},
+									"response": []
+								},
+								{
+									"name": "Update car",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzOTk1MDAuNDc2MjkxfQ.NciIlt1pDUB2i8onw74kmTMdxymCAGLSeg0U_8ioeVI",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vehicle\":{\r\n    \"id\":\"1621283076-489214\",\r\n    \"title\": \"A test ad\",\r\n    \"price\": 10000,\r\n    \"adType\": 0,\r\n    \"description\":\"This is a test ad number 2\",\r\n    \"make\":41,\r\n    \"model\":225,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\", \"Windows\"],\r\n    \"cylinders\":8,\r\n    \"color\":\"AAAA\",\r\n    \"year\":2018,\r\n    \"warranty\":false,\r\n    \"fuel\": 2,\r\n    \"condition\":1,\r\n    \"hp\":600,\r\n    \"body_type\": 0,\r\n    \"transmission\": false,\r\n    \"region\": 0,\r\n    \"num_of_doors\": 0,\r\n    \"distance\":50\r\n    }\r\n    }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/vehicle/car/update",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"vehicle",
+												"car",
+												"update"
+											]
+										},
+										"description": "Updating car ad type call"
+									},
+									"response": []
+								}
+							],
+							"description": "Calls only related to \"Car\" class.\nCreate and Update only calls"
+						},
+						{
+							"name": "Boat advertisement API",
+							"item": [
+								{
+									"name": "Create boat",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzOTk1MDAuNDc2MjkxfQ.NciIlt1pDUB2i8onw74kmTMdxymCAGLSeg0U_8ioeVI",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vehicle\":{\r\n    \"title\": \"A test ad 3\",\r\n    \"price\": 10000,\r\n    \"description\":\"This is a test ad\",\r\n    \"make\":1,\r\n    \"model\":25,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\"],\r\n    \"cylinders\":6,\r\n    \"color\":\"FFFF\",\r\n    \"year\":2016,\r\n    \"warranty\":true,\r\n    \"fuel\": 0,\r\n    \"condition\":0,\r\n    \"hours\":350,\r\n    \"length\":30,\r\n    \"typed\":1,\r\n    \"subType\":2\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/vehicle/boat/create",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"vehicle",
+												"boat",
+												"create"
+											]
+										},
+										"description": "Creating boat ad type call"
+									},
+									"response": []
+								},
+								{
+									"name": "Update boat",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzOTk1MDAuNDc2MjkxfQ.NciIlt1pDUB2i8onw74kmTMdxymCAGLSeg0U_8ioeVI",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vehicle\":{\r\n    \"id\":\"1621283076-489214\",\r\n   \"title\": \"A test boat ad\",\r\n    \"price\": 10000,\r\n    \"description\":\"This is a boat test ad\",\r\n    \"make\":1,\r\n    \"model\":25,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\"],\r\n    \"cylinders\":6,\r\n    \"color\":\"FFFF\",\r\n    \"year\":2016,\r\n    \"warranty\":true,\r\n    \"fuel\": 0,\r\n    \"condition\":0,\r\n    \"hours\":350,\r\n    \"length\":30,\r\n    \"typed\":1,\r\n    \"subType\":2\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/vehicle/boat/update",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"vehicle",
+												"boat",
+												"update"
+											]
+										},
+										"description": "Updating boat ad type call"
+									},
+									"response": []
+								}
+							],
+							"description": "Calls only related to \"Boat\" class.\nCreate and Update only calls"
+						},
+						{
+							"name": "Motorcycle advertisement API",
+							"item": [
+								{
+									"name": "Create motorcycle",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzMjAzMjIuMDM1Mzk1fQ.1SEEdD2TRkqW3vU8muY5ZReYcRQG1jTPcBhrR4eivM4",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vehicle\":{\r\n    \"title\": \"A test ad 3\",\r\n    \"price\": 10000,\r\n    \"description\":\"This is a test ad\",\r\n    \"make\":1,\r\n    \"model\":25,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\"],\r\n    \"cylinders\":6,\r\n    \"color\":\"FFFF\",\r\n    \"year\":2016,\r\n    \"warranty\":true,\r\n    \"fuel\": 0,\r\n    \"condition\":0,\r\n    \"hours\":350,\r\n    \"engineSize\":250\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/vehicle/motorcycle/create",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"vehicle",
+												"motorcycle",
+												"create"
+											]
+										},
+										"description": "Creating motorcycle ad type call"
+									},
+									"response": []
+								},
+								{
+									"name": "Update motorcycle",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzMjAzMjIuMDM1Mzk1fQ.1SEEdD2TRkqW3vU8muY5ZReYcRQG1jTPcBhrR4eivM4",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vehicle\":{\r\n    \"id\":\"1621233086-64987\",\r\n    \"title\": \"A test ad 3\",\r\n    \"price\": 10000,\r\n    \"description\":\"This is a test ad\",\r\n    \"make\":1,\r\n    \"model\":25,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\"],\r\n    \"cylinders\":6,\r\n    \"color\":\"FFFF\",\r\n    \"year\":2016,\r\n    \"warranty\":true,\r\n    \"fuel\": 0,\r\n    \"condition\":0,\r\n    \"hours\":350,\r\n    \"engineSize\":450\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/vehicle/motorcycle/update",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"vehicle",
+												"motorcycle",
+												"update"
+											]
+										},
+										"description": "Updating motorcycle ad type call"
+									},
+									"response": []
+								}
+							],
+							"description": "Calls only related to \"Motorcycle\" class.\nCreate and Update only calls"
+						},
+						{
+							"name": "Heavy vehicle API",
+							"item": [
+								{
+									"name": "Create heavy vehicle",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzMjAzMjIuMDM1Mzk1fQ.1SEEdD2TRkqW3vU8muY5ZReYcRQG1jTPcBhrR4eivM4",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vehicle\":{\r\n    \"id\": \"1621222441-448424\",\r\n    \"title\": \"Heavy test\",\r\n    \"price\": 5555,\r\n    \"description\":\"This is a heavy test ad\",\r\n    \"make\":1,\r\n    \"model\":25,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\"],\r\n    \"cylinders\":12,\r\n    \"color\":\"FFFF\",\r\n    \"year\":2020,\r\n    \"warranty\":true,\r\n    \"fuel\": 0,\r\n    \"condition\":0,\r\n    \"distance\": 10,\r\n    \"hours\":5,\r\n    \"heavy_type\":3\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/vehicle/heavy/update",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"vehicle",
+												"heavy",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update heavy vehicle Copy",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzMjAzMjIuMDM1Mzk1fQ.1SEEdD2TRkqW3vU8muY5ZReYcRQG1jTPcBhrR4eivM4",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vehicle\":{\r\n    \"title\": \"A test ad\",\r\n    \"price\": 10000,\r\n    \"description\":\"This is a test ad\",\r\n    \"make\":1,\r\n    \"model\":25,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\"],\r\n    \"cylinders\":6,\r\n    \"color\":\"FFFF\",\r\n    \"year\":2016,\r\n    \"warranty\":true,\r\n    \"fuel\": 0,\r\n    \"condition\":0,\r\n    \"distance\": 70,\r\n    \"hours\":60,\r\n    \"heavy_type\":4\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/vehicle/heavy/create",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"vehicle",
+												"heavy",
+												"create"
+											]
+										},
+										"description": "Updating heavy vehicle ad type call"
+									},
+									"response": []
+								}
+							],
+							"description": "Calls only related to \"HeavyVehicle\" class.\nCreate and Update only calls"
+						}
+					],
+					"description": "Calls only related to \"Vehicle\" class.\nCreate and Update only calls"
+				},
+				{
+					"name": "Get unapproved ads",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzOTk5OTIuODM4NTZ9.Vc3x4921F49Iab2lByHuai6Mctu7q3dxBCfc2k5jzuk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/advertisement/unapproved?pageNumber=1&nPerPage=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"advertisement",
+								"unapproved"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "nPerPage",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve advertisements",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzOTk5OTIuODM4NTZ9.Vc3x4921F49Iab2lByHuai6Mctu7q3dxBCfc2k5jzuk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/advertisement/approve?advertisementID=1621283076-489214",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"advertisement",
+								"approve"
+							],
+							"query": [
+								{
+									"key": "advertisementID",
+									"value": "1621283076-489214"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "All calls related to \"Advertisement\" and actions that can be performed and search queries"
+		}
+	]
+}

@@ -1,0 +1,18 @@
+- Code Quality
+    - Implement proporty for classes
+    - Implement __setter__ function for classes
+
+- Bugs
+    - check update user if password changes << PASS
+    - add status in constructor for ad class maybe no need just use $set in database (direct update using ID)
+
+- To be Completed
+    - User reset password via email and JWT (1/2) Done !
+    ---- Advance search and sort queries <<< dubizzle.com <<< 2-3 dyas
+    ---- Number plate model, routes and database create/update <<< 1 day
+    ---- image implementation for ads <<< 3 days
+    -+ approve adds
+    - Input validation
+    -+ Update routes validation
+    - checkIfAdmin / Mod Call to access admin dashboard
+
