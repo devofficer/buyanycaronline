@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "60fbe4a8-d9f1-4ff7-a482-0a9841217ffa",
+		"_postman_id": "745ccf94-7b97-430c-b16e-48d6a5e742d5",
 		"name": "buyanycaronline",
 		"description": "buyanycaronline backend API calls \nyou need to read them and develop client that can communicate with all calls",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -17,7 +17,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzOTk1MDAuNDc2MjkxfQ.NciIlt1pDUB2i8onw74kmTMdxymCAGLSeg0U_8ioeVI",
+									"value": "{{jwt}}",
 									"type": "string"
 								}
 							]
@@ -26,7 +26,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"mo@mo.com\",\r\n    \"city\": \"Abu Dhabi\",\r\n    \"country\": \"UAE\",\r\n    \"mobile\": \"0501234567\",\r\n    \"hashed\": \"password\"\r\n    }",
+							"raw": "{\r\n    \"username\":\"mo@mo.com\",\r\n    \"city\": \"Abu Dhabi\",\r\n    \"country\": \"UAE\",\r\n    \"mobile\": \"0501234567\",\r\n    \"hashed\": \"password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -460,47 +460,7 @@
 											"bearer": [
 												{
 													"key": "token",
-													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzMjAzMjIuMDM1Mzk1fQ.1SEEdD2TRkqW3vU8muY5ZReYcRQG1jTPcBhrR4eivM4",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"vehicle\":{\r\n    \"id\": \"1621222441-448424\",\r\n    \"title\": \"Heavy test\",\r\n    \"price\": 5555,\r\n    \"description\":\"This is a heavy test ad\",\r\n    \"make\":1,\r\n    \"model\":25,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\"],\r\n    \"cylinders\":12,\r\n    \"color\":\"FFFF\",\r\n    \"year\":2020,\r\n    \"warranty\":true,\r\n    \"fuel\": 0,\r\n    \"condition\":0,\r\n    \"distance\": 10,\r\n    \"hours\":5,\r\n    \"heavy_type\":3\r\n    }\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:3000/vehicle/heavy/update",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"vehicle",
-												"heavy",
-												"update"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Update heavy vehicle Copy",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoxLCJleHAiOjE2MjEzMjAzMjIuMDM1Mzk1fQ.1SEEdD2TRkqW3vU8muY5ZReYcRQG1jTPcBhrR4eivM4",
+													"value": "{{jwt}}",
 													"type": "string"
 												}
 											]
@@ -532,9 +492,146 @@
 										"description": "Updating heavy vehicle ad type call"
 									},
 									"response": []
+								},
+								{
+									"name": "Update heavy vehicle",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoyLCJleHAiOjE2MjIyODQ3NzkuMDU1Mzg2fQ.1w7456dEdCUcQUEYYejQ3_DDMEy-RzcmP84cecQWWBk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vehicle\":{\r\n    \"id\": \"1622284568-806345\",\r\n    \"title\": \"Heavy test\",\r\n    \"price\": 5555,\r\n    \"description\":\"This is a heavy test ad\",\r\n    \"make\":1,\r\n    \"model\":25,\r\n    \"features\":[\"Bluetooth\",\"DVD\",\"Camera\"],\r\n    \"cylinders\":12,\r\n    \"color\":\"FFFF\",\r\n    \"year\":2020,\r\n    \"warranty\":true,\r\n    \"fuel\": 0,\r\n    \"condition\":0,\r\n    \"distance\": 10,\r\n    \"hours\":5,\r\n    \"heavy_type\":3\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/vehicle/heavy/update",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"vehicle",
+												"heavy",
+												"update"
+											]
+										}
+									},
+									"response": []
 								}
 							],
 							"description": "Calls only related to \"HeavyVehicle\" class.\nCreate and Update only calls"
+						},
+						{
+							"name": "Number Plate API",
+							"item": [
+								{
+									"name": "Create numberplate",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{jwt}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{jwt}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"accessory\":{\r\n    \"title\": \"A numberplate test 0\",\r\n    \"price\": 10000,\r\n    \"description\": \"This is a numberplate ad\",\r\n    \"digits\": 3\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/accessory/numberplate/create",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"accessory",
+												"numberplate",
+												"create"
+											]
+										},
+										"description": "Creating motorcycle ad type call"
+									},
+									"response": []
+								},
+								{
+									"name": "Update numberplate",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "password",
+													"value": "{{jwt}}",
+													"type": "string"
+												},
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1vMUBtby5jb20iLCJyb2xlIjoyLCJleHAiOjE2MjIyODc4NjAuNzc0OTk2fQ.U6PUUY73weIYPmJlcd3-MwRFfEzr4g3n9poJYQLVU-g",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"accessory\":{\r\n    \"id\": \"1622283977-642003\",\r\n    \"title\": \"updated title hhhhhhh\",\r\n    \"price\": 10000,\r\n    \"description\": \"This is a numberplate ad\",\r\n    \"digits\": 3\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/accessory/numberplate/update",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"accessory",
+												"numberplate",
+												"update"
+											]
+										},
+										"description": "Creating motorcycle ad type call"
+									},
+									"response": []
+								}
+							]
 						}
 					],
 					"description": "Calls only related to \"Vehicle\" class.\nCreate and Update only calls"
