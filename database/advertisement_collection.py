@@ -5,6 +5,7 @@ from pymongo.errors import PyMongoError, DuplicateKeyError
 
 from common.enums import AdvertisementTypes, AdvertisementStatus
 from models.vehicle_model import *
+from models.accessory_model import *
 from database.database import DataBase
 from models.class_to_dict import convert_to_dict
 from common.utils import IDGenerator
@@ -34,6 +35,12 @@ class AdvertisementDB:
         except PyMongoError as e:
             print(e)
         if record is not None:
+            if record["adType"] == AdvertisementTypes.NUMBERPLATE.value:
+                numberplate = NumberPlate(owner=record["owner"], title=record["title"], 
+                                    price=record["price"], decription=record["description"], 
+                                    digits=record["digits"], adType=AdvertisementTypes.NUMBERPLATE.value)
+                return numberplate
+            
             vehicle = Vehicle(owner=record["owner"], title=record["title"], price=record["price"],
                               decription=record["description"], make=record["make"], model=record["model"],
                               features=record["features"], cylinder=record["cylinders"], color=record["color"],
