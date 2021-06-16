@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 
+import pymongo
 from pymongo.errors import PyMongoError, DuplicateKeyError
 
 from common.enums import AdvertisementTypes, AdvertisementStatus
@@ -45,7 +46,7 @@ class AdvertisementDB:
                               decription=record["description"], make=record["make"], model=record["model"],
                               features=record["features"], cylinder=record["cylinders"], color=record["color"],
                               year=record["year"], warranty=record["warranty"], fuel=record["fuelType"],
-                              condition=record["condition"])
+                              condition=record["condition"], images=record["images"])
             if record["adType"] == AdvertisementTypes.CAR.value:
                 car = Car(hp=record["hp"], body_type=record["bodyType"], trans=record["transmission"],
                           region=record["region"], doors=record["numOfDoors"], distance=record["distance"])
@@ -115,3 +116,35 @@ class AdvertisementDB:
             return "Advertisement have been successfully updated"
         except PyMongoError as e:
             return "Error advertisement not updated"
+
+    @staticmethod
+    def search(page: int, advertisement_type: int, min_price=None, max_price=None):
+        per_page = 10
+
+        _query = {}
+        _and = []
+
+        _and.append({'status': AdvertisementStatus.APPROVED.value})
+        _and.append({'adType': advertisement_type})
+
+        if min_price:
+            _and.append({'price': {'$gte': int(min_price)}})
+
+        if max_price:
+            _and.append({'price': {'$lte': int(max_price)}})
+
+        _query['$and'] = _and
+
+        data = list()
+        try:
+            col = DataBase.advertisement_collection()
+
+            records = col.find(_query).sort([("last-modified-date", pymongo.DESCENDING)]).skip(
+                (page - 1) * per_page if page > 0 else 0) \
+                .limit(per_page)
+            count = col.find(_query).count()
+            for record in records:
+                data.append(record)
+            return {"Message": "successfully found data", "data": data, "count": count}
+        except PyMongoError as e:
+            return {"Message": "Error finding data"}

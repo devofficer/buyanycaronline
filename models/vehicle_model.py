@@ -4,7 +4,7 @@ from models.advertisement_model import Advertisement
 class Vehicle(Advertisement):
     def __init__(self, adType: int = -1, owner: str = "", title: str = "", price: int = 0, decription: str = "",
                  make: int = 0, model: int = 0, features: list = [""], cylinder: int = 0, year: int = 0,
-                 condition: int = 0, fuel: int = 0, color: str = "", warranty: bool = False):
+                 condition: int = 0, fuel: int = 0, color: str = "", warranty: bool = False, images: list = []):
         super().__init__(adType=adType,title=title, price=price, decription=decription, owner=owner)
         self.__make = make
         self.__model = model
@@ -15,6 +15,13 @@ class Vehicle(Advertisement):
         self.__condition = condition
         self.__fuelType = fuel
         self.__warranty = warranty
+        self.__images = images
+
+    def get_images(self):
+        return self.__images
+
+    def set_images(self, images: []):
+        self.__images = images
 
     def get_color(self):
         return self.__color

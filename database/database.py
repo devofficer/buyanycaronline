@@ -27,3 +27,8 @@ class DataBase:
     def advertisement_collection():
         db = DataBase.getInstance()
         return db["advertisements"]
+
+    @staticmethod
+    def image_collection():
+        db = DataBase.getInstance()
+        return db["images"]

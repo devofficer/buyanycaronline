@@ -1,4 +1,6 @@
 from sanic import Blueprint, Request, json
+
+from common.enums import AdvertisementTypes
 from database.advertisement_collection import AdvertisementDB
 from decorators.Auth import *
 
@@ -18,3 +20,19 @@ async def get_unapproved_ads(request: Request):
 async def get_unapproved_ads(request: Request):
     advertisementID = request.args.get("advertisementID")
     return json(body=AdvertisementDB.approve_advertisement(advertisementID))
+
+
+@advertisement_blue_print.get("/advertisement/search")
+async def search(request):
+    page = int(request.args.get("page", "0"))
+    advertisement_type = int(request.args.get('advertisementType', AdvertisementTypes.CAR.value))
+    min_price = request.args.get('minPrice')
+    max_price = request.args.get('maxPrice')
+
+    if advertisement_type not in[AdvertisementTypes.CAR.value, AdvertisementTypes.BOAT.value, AdvertisementTypes.HEAVY.value,
+                                 AdvertisementTypes.MOTORCYCLE.value]:
+        return json({"Message": "Error, invalid advertisement type!"})
+
+    result = AdvertisementDB.search(page, advertisement_type, min_price, max_price)
+
+    return json(body=result)
